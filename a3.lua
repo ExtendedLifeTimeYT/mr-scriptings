@@ -1,4 +1,10 @@
-local actor = game.ReplicatedFirst:WaitForChild("cl_1774704410")
+local actor
+game.ReplicatedFirst.ChildAdded:Connect(function(ch)
+		if ch.Name:find("cl_") then
+			actor = ch
+		end
+end)
+repeat task.wait() until actor
 
 print("Found Actor")
 
