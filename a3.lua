@@ -1,5 +1,11 @@
 local actor
-game.ReplicatedFirst.ChildAdded:Connect(function(ch)
+local ReplicatedFirst = game:GetService("ReplicatedFirst")
+for _,ch in ReplicatedFirst:GetChildren() do
+		if ch.Name:find("cl_") then
+			actor = ch
+		end
+end
+ReplicatedFirst.ChildAdded:Connect(function(ch)
 		if ch.Name:find("cl_") then
 			actor = ch
 		end
