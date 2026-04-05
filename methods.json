@@ -1,0 +1,159 @@
+{
+    "SystemTweaks": {
+        "Privacy": {
+            "DisableTelemetry": {
+                "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+                "value_name": "AllowTelemetry",
+                "type": "DWORD",
+                "states": {
+                    "0": "Off",
+                    "1": "Basic",
+                    "3": "Full"
+                },
+                "desired": 0
+            },
+            "DisableLocationTracking": {
+                "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location",
+                "value_name": "Value",
+                "type": "SZ",
+                "states": {
+                    "Deny": "Off",
+                    "Allow": "On"
+                },
+                "desired": "Deny"
+            }
+        },
+        "Gaming_Performance": {
+            "DisableGameDVR": {
+                "path": "HKEY_CURRENT_USER\\System\\GameConfigStore",
+                "value_name": "GameDVR_Enabled",
+                "type": "DWORD",
+                "states": {
+                    "0": "Off",
+                    "1": "On"
+                },
+                "desired": 0
+            },
+            "DisableHibernation": {
+                "type": "Command",
+                "command": "powercfg -h off",
+                "states": {
+                    "on": "Enabled",
+                    "off": "Disabled"
+                },
+                "desired": "off"
+            },
+            "DisableMultiplaneOverlay": {
+                "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\Dwm",
+                "value_name": "OverlayTestMode",
+                "type": "DWORD",
+                "states": {
+                    "00000005": "Disabled",
+                    "0": "Enabled"
+                },
+                "desired": "00000005"
+            },
+            "SplitThresholdSvchost": {
+                "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control",
+                "value_name": "SvcHostSplitThresholdInKB",
+                "type": "DWORD",
+                "states": {
+                    "3800000": "Default",
+                    "automatic": "Calculated based on RAM"
+                },
+                "desired": "automatic"
+            }
+        },
+        "Interface_UI": {
+            "EnableEndTaskRightClick": {
+                "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                "value_name": "TaskbarEndTask",
+                "type": "DWORD",
+                "states": {
+                    "0": "Disabled",
+                    "1": "Enabled"
+                },
+                "desired": 1
+            },
+            "BingSearchInStart": {
+                "path": "HKEY_CURRENT_USER\\Software\\Policies\\Microsoft\\Windows\\Explorer",
+                "value_name": "DisableSearchBoxSuggestions",
+                "type": "DWORD",
+                "states": {
+                    "0": "Enabled",
+                    "1": "Disabled"
+                },
+                "desired": 1
+            },
+            "SnapAssistSuggestion": {
+                "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                "value_name": "SnapAssist",
+                "type": "DWORD",
+                "states": {
+                    "0": "Off",
+                    "1": "On"
+                },
+                "desired": 0
+            }
+        },
+        "Network_App_Blocking": {
+            "AdobeNetworkBlock": {
+                "type": "FirewallRule",
+                "direction": "Outbound",
+                "action": "Block",
+                "target": "Adobe Executables"
+            },
+            "PreferIPv4": {
+                "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters",
+                "value_name": "DisabledComponents",
+                "type": "DWORD",
+                "states": {
+                    "32": "Prefer IPv4",
+                    "0": "Default"
+                },
+                "desired": 32
+            },
+            "DisableTeredo": {
+                "type": "Command",
+                "command": "netsh interface ipv6 set tertiary state disabled",
+                "desired": "disabled"
+            }
+        },
+        "Apps_Services": {
+            "SetServicesToManual": {
+                "type": "ServiceConfig",
+                "target": [
+                    "SysMain",
+                    "DiagTrack",
+                    "WbioSrvc"
+                ],
+                "states": {
+                    "2": "Automatic",
+                    "3": "Manual",
+                    "4": "Disabled"
+                },
+                "desired": 3
+            },
+            "DisableMicrosoftCopilot": {
+                "path": "HKEY_CURRENT_USER\\Software\\Policies\\Microsoft\\Windows\\WindowsCopilot",
+                "value_name": "TurnOffWindowsCopilot",
+                "type": "DWORD",
+                "states": {
+                    "0": "On",
+                    "1": "Off"
+                },
+                "desired": 1
+            },
+            "BlockRazerSoftware": {
+                "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Device Installer",
+                "value_name": "DisableRazerInstaller",
+                "type": "DWORD",
+                "states": {
+                    "1": "Blocked",
+                    "0": "Allowed"
+                },
+                "desired": 1
+            }
+        }
+    }
+}
