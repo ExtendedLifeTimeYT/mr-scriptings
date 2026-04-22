@@ -1,3 +1,3 @@
-print("Running from "..script.Parent)
+print("Running from "..script.Parent.Name)
 
 print("Fetched from Github!")
